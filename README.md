@@ -1,6 +1,6 @@
 📦 Gerenciador de Estoque com React, Vite, TypeScript e MongoDB 📊
 
-# Em
+# EM DESENVOLVIMENTO
 
 Este é um aplicativo de gerenciamento de estoque desenvolvido com React, Vite, TypeScript no frontend e MongoDB com Prisma no backend. Perfeito para manter o controle de inventário de produtos de forma eficiente e organizada.
 
