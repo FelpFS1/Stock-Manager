@@ -8,7 +8,6 @@ import AlertAuth from "../../components/Alerts/AlertAuth";
 import SingUpForm from "../../services/auth/SignUpForm";
 import ShowPassword from "../../components/ShowPassword";
 import AlertSucess from "../../components/Alerts/AlertSucess";
-import AwaitAnimation from "../../components/AwaitAnimation";
 
 export default function Register() {
     const themeStorage = localStorage.getItem('theme')

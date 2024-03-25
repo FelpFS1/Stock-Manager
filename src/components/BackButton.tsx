@@ -1,10 +1,8 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import arrowBack from '../assets/arrowBack.svg'
 
 
 export default function BackButton() {
-    const {pathname} = useLocation()
-    const {id} = useParams()
     const navigate = useNavigate()
     const handleClickBack = () => {
        
