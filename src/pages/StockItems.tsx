@@ -11,7 +11,6 @@ import AlertSucess from "../components/Alerts/AlertSucess";
 export default function StockItems() {
     const { theme } = useContext(RootContext)
     const { allProducts, setProductId, setAllProducts } = useContext(RootContext)
-    const [showProducts, setShowProducts] = useState<ProductsProps[]>([])
     const [productName, setProductName] = useState<string>('')
     const [showAlert, setShowAlert] = useState(false)
     const [showSucessAlert,setShowSucessAlert] = useState<boolean>(false)
@@ -41,7 +40,6 @@ export default function StockItems() {
     useEffect(() => {
        
     }, [allProducts])
-    console.log(allProducts);
     
 
     return (

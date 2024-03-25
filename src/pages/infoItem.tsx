@@ -1,23 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { RootContext } from "../Contexts/RootContext";
 import { ProductsProps } from "../interfaces/ProductsProps";
 import Products from "../helpers/class/Products";
 import AlertDelete from "../components/Alerts/AlertDelete";
 import AlertSucess from "../components/Alerts/AlertSucess";
+
 export default function InfoItem() {
   const { pathname } = useLocation();
-  const { id } = useParams();
 
   const navigate = useNavigate();
   const { allProducts, setAllProducts } = useContext(RootContext);
-  const [product, setProduct] = useState<ProductsProps>();
+
   const [productName, setProductName] = useState<string | undefined>("");
   const [showAlert, setShowAlert] = useState(false);
   const [showSucessAlert, setShowSucessAlert] = useState<boolean>(false);
   const [deleteId, setDeleteId] = useState<string | undefined>("");
+  const product = useLoaderData() as ProductsProps
   const deleteConfirm = (id?: string, productName?: string) => {
     setShowAlert((state) => !state);
     setDeleteId(id);
@@ -28,12 +29,14 @@ export default function InfoItem() {
       const data: { message: string; product: ProductsProps[] } =
         await Products.deleteProduct(id);
       if (data.message == "Sucess") {
+        
         const productsFilter = allProducts.filter(
           (product) => product.id != data.product[0].id
         );
         setAllProducts(productsFilter);
         setShowAlert((state) => !state);
         setShowSucessAlert((state) => !state);
+        navigate('/items')
       }
     } catch (error) {
       console.log(error);
@@ -49,25 +52,16 @@ export default function InfoItem() {
         navigate("/items");
       }, 3000);
     }
-    getProductsInfo()
+  
   }, [allProducts]);
 
-  
-
-  const getProductsInfo = () => {
-    if (id && allProducts) {
-      const product = new Products(allProducts).getProductDatail(id);
-      setProduct(product[0]);
-    }
-  };
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
       return;
     }
-    getProductsInfo();
+
   }, [navigate]);
-console.log(allProducts);
 
   return (
     <motion.div
@@ -86,7 +80,7 @@ console.log(allProducts);
             setShowAlert={setShowAlert}
           />
         )}
-        <h1 className="text-sm">{product?.name}</h1>
+        <h1 className="text-sm flex items-center">{product?.name}</h1>
         <Link to={`/items/update-item/${product?.id}`}>
           <button className="bg-blue-700 md:px-4 p-1 rounded">Atualizar</button>
         </Link>
@@ -106,7 +100,7 @@ console.log(allProducts);
           Quantidade em estoque: {product?.quantity}
         </p>
         <p className="py-2 px-2 sm:px-5 bg-zinc-900 rounded-xl">
-          Preço: R$ {product?.price}
+          Preço: {product?.price}
         </p>
       </div>
       <div className="mb-2">

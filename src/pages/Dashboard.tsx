@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
 import { motion } from "framer-motion";
 import CardDashboard from "../components/CardDashboard";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
@@ -7,16 +7,12 @@ import { RootContext } from "../Contexts/RootContext";
 import { ProductsProps } from "../interfaces/ProductsProps";
 import Products from "../helpers/class/Products";
 export default function Dashboard() {
-
-    const token = localStorage.getItem("token");
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const { theme, allProducts, setProductId } = useContext(RootContext);
-
+    const { theme, allProducts, setProductId } = useContext(RootContext); 
     const [products, setProducts] = useState<ProductsProps[]>([]);
     const [recentProducts, setRecentProducts] = useState<ProductsProps[]>([]);
     const [endingProducts, setEndingProducts] = useState<ProductsProps[]>([]);
-
 
     const addProducts = () => {
         const recentProduct = new Products(products).getRecentProducts();
@@ -25,36 +21,33 @@ export default function Dashboard() {
         setEndingProducts(endingProduct);
     };
 
-    useEffect(() => {
-        if (!token) {
+    const checkToken = async() =>{
+        const data = await Products.getAllProduct()
+        console.log(data);
+        
+        if(data.message){
+           
             navigate('/login')
-            return
         }
-       
+    }
+
+    useEffect(() => {
+        checkToken()
         setProducts(allProducts)
-  
+
     }, [navigate, pathname]);
 
     useLayoutEffect(() => {
-        if (!token) {
-            navigate('/login')
-            return
-        }
         setProducts(allProducts)
         addProducts()
 
     }, [products]);
-    if (!token) {
-        return null
-    }
- 
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            exit={{ opacity: 0 }}>
+            transition={{ duration: 0.5, ease: 'easeInOut' }}>
             <section
                 className={
                     theme == "light" ? " text-black w-[90vw] m-auto" : "w-[90vw] m-auto"

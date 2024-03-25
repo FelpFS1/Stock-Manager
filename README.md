@@ -18,6 +18,7 @@ Este é um aplicativo de gerenciamento de estoque desenvolvido com React, Vite, 
   - TypeScript: Superset tipado do JavaScript para desenvolvimento mais seguro e produtivo.
 
 - **Backend:**
+  - Node.js com Fastify: Framework web leve e eficiente para construir aplicativos rápidos e escaláveis em Node.js.
   - MongoDB: Banco de dados NoSQL altamente escalável e flexível.
   - Prisma: ORM moderno e de alto desempenho para interagir com o banco de dados MongoDB.
 

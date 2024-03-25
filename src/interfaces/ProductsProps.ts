@@ -2,7 +2,7 @@ export interface ProductsProps {
     id:string,
     name:string,
     quantity:number,
-    price:number,
+    price:string,
     category:string,
     description:string,
     userId?:string,

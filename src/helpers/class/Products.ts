@@ -65,31 +65,39 @@ export default class Products {
     const productFiltered = this.products.filter(
       (product) => product.id === id
     );
+    if(productFiltered.length > 0){
+      console.log(productFiltered);
+      
+      const product = 
+        {
+          id: productFiltered[0].id,
+          name: productFiltered[0].name,
+          price: (productFiltered[0].price),
+          quantity: productFiltered[0].quantity,
+          description: productFiltered[0].description,
+          category: productFiltered[0].category,
+          createdAt: dayjs(productFiltered[0].createdAt).format(
+            "DD/MM/YYYY hh:mm A"
+          ),
+          updatedAt: dayjs(productFiltered[0].updatedAt).format(
+            "DD/MM/YYYY hh:mm A"
+          ),
+        }
+      ;
+      return product;
+      
+    }
 
-    const product = [
-      {
-        id: productFiltered[0].id,
-        name: productFiltered[0].name,
-        price: productFiltered[0].price,
-        quantity: productFiltered[0].quantity,
-        description: productFiltered[0].description,
-        category: productFiltered[0].category,
-        createdAt: dayjs(productFiltered[0].createdAt).format(
-          "DD/MM/YYYY hh:mm A"
-        ),
-        updatedAt: dayjs(productFiltered[0].updatedAt).format(
-          "DD/MM/YYYY hh:mm A"
-        ),
-      },
-    ];
-
-    return product;
+      
+    throw new Response("error",{status:404})
   }
 
   static async addProduct(
     id: string,
     { name, quantity, description, price, category }: newProduct
   ) {
+
+    
     const response = await fetch(`http://127.0.0.1:3333/product/${id}`, {
       method: "POST",
       headers: {
@@ -99,7 +107,7 @@ export default class Products {
         name,
         quantity: +quantity,
         description,
-        price: +price,
+        price: price,
         category,
       }),
     });
@@ -132,7 +140,7 @@ export default class Products {
           name,
           quantity: +quantity,
           description,
-          price: +price,
+          price: price,
           category,
           updatedAt:new Date()
         }),

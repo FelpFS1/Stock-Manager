@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import SwitchTheme from "../../components/SwitchTheme";
 import AlertAuth from "../../components/Alerts/AlertAuth";
 import SingUpForm from "../../services/auth/SignUpForm";
 import ShowPassword from "../../components/ShowPassword";
-import Password from "antd/es/input/Password";
+import AlertSucess from "../../components/Alerts/AlertSucess";
+import AwaitAnimation from "../../components/AwaitAnimation";
 
 export default function Register() {
     const themeStorage = localStorage.getItem('theme')
     const [theme, setTheme] = useState<string | null>()
-
     const [user, setUser] = useState({ name: '', lastName: '', email: '', password: '', passwordAgain: '' })
     const [erroMessage, setErroMessage] = useState<string>('')
     const [showRequirements, setShowRequirements] = useState(false)
     const [showPassword, setShowPassword] = useState<boolean>(true)
+    const [showSucessAlert,setShowSucessAlert] = useState<boolean>(false)
+    const navigate = useNavigate()
     const [requirements, setRequirements] = useState({
         lengthRequirements: false,
         lowercaseRequirements: false,
@@ -37,13 +40,18 @@ export default function Register() {
         const response = await SingUpForm(user)
         if (response.message) {
             setErroMessage(response.message)
+            return
         }
+        setShowSucessAlert(true)
+        setTimeout(() => {
+          navigate('/')
+        },2000)
     }
 
     const handleRequirementsPassword = () => {
         user.password ? setShowRequirements(true) : setShowRequirements(false)
 
-        if (Password.length === 0) {
+        if (user.password.length === 0) {
             return null
         }
         const verifyUppercase = /.*[A-Z].*/
@@ -73,10 +81,15 @@ export default function Register() {
                 <SwitchTheme setThemeProp={setTheme} />
             </header>
 
-            <main className="relative h-[75vh] flex items-center" >
+            <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="relative h-[75vh] flex items-center" >
 
                 <form onSubmit={formSubmit} className={theme == "light" ? "relative bg-slate-300 w-[98vw] md:w-[30vw] flex flex-col gap-2 m-auto justify-center p-5 md:p-10 border rounded-xl " : "relative w-[98vw] md:w-[30vw] flex flex-col gap-2 m-auto justify-center p-5 md:p-10 border rounded-xl "}>
                     {erroMessage && <AlertAuth content={erroMessage} />}
+                    {showSucessAlert && <AlertSucess message="Usuário cadastrado com sucesso!"/>}
                     <div className="grid grid-cols-2 gap-5">
                         <div className="flex flex-col">
                             <label htmlFor="name">Nome:</label>
@@ -158,7 +171,7 @@ export default function Register() {
                     </div>
                     <button className="bg-blue-600 text-white w-1/2 p-2 rounded" type="submit">Registrar</button>
                 </form>
-            </main>
+            </motion.main>
         </div>
 
     )

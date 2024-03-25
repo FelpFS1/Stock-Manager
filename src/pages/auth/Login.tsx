@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import SingInForm from "../../services/auth/SignInForm";
 import AlertAuth from "../../components/Alerts/AlertAuth";
 import ShowPassword from "../../components/ShowPassword";
-import AlertAwait from "../../components/Alerts/AlertAwait";
+import AwaitAnimation from "../../components/AwaitAnimation";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function Login() {
   const [user, setUser] = useState({ email: "", password: "", });
   const [erroMessage, setErroMessage] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(true);
+  const [showLoginSucess, setShowLoginSucess] = useState<boolean>(false)
 
 
   const handleChange = (event: { target: { name: string; value: string } }) => {
@@ -32,20 +34,24 @@ export default function Login() {
     const data = await SingInForm(user);
     if (!data.message) {
       localStorage.setItem("token", data.token);
-      navigate("/");
+      setShowLoginSucess(true)
       return;
     }
     setErroMessage(data.message);
   };
 
   useEffect(() => {
-    localStorage.removeItem("product")
     if (localStorage.getItem("token")) {
       navigate("/");
       return
     }
     setTheme(themeStorage);
   }, [navigate, themeStorage, pathname]);
+
+  if (showLoginSucess) {
+    return <AwaitAnimation content="Entrando..." />
+  }
+
   return (
     <div
       className={
@@ -62,7 +68,6 @@ export default function Login() {
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className="h-[75vh] flex items-center text-white"
       >
-        <AlertAwait/>
         <form
           onSubmit={loginSubmit}
           className={
@@ -98,16 +103,10 @@ export default function Login() {
           <div onClick={() => setShowPassword((state) => !state)}>
             <ShowPassword />
           </div>
-          <div className="w-full flex mb-3 mt-3 text-sm gap-5">
+          <div className="w-full flex mb-3 mt-3 text-sm ">
             <p>
-              Esqueceu sua senha?{" "}
-              <Link to="/" className="underline">
-                Recuperar
-              </Link>
-            </p>
-            <p>
-              Ainda não tem uma conta?{" "}
-              <Link to="/register" className="underline font-bold">
+              Ainda não tem uma conta?
+              <Link to="/register" className="underline font-bold ml-2">
                 Cadastre-se
               </Link>
             </p>

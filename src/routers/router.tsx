@@ -8,10 +8,15 @@ import EditItem from "../pages/EditItem";
 import InfoItem from "../pages/infoItem";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import LoadProduct from "../loaders/products";
+import ProductBoundary from "../ErroBoundary/ProductBoundary";
+import PagesBoundary from "../ErroBoundary/PagesBoundary";
+
 
 const router = createBrowserRouter([{
     path: "/",
     element: <RootLayout />,
+    errorElement:<PagesBoundary/>,
     children: [{
         index: true,
         element: <Dashboard />
@@ -32,7 +37,9 @@ const router = createBrowserRouter([{
                 element: <EditItem />
             },{
                 path:'info-item/:id',
-                element:<InfoItem/>
+                element:<InfoItem/>,
+                loader:LoadProduct,
+                errorElement:<ProductBoundary/>
             }
         ]
     }
