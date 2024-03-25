@@ -98,7 +98,7 @@ export default class Products {
   ) {
 
     
-    const response = await fetch(`http://127.0.0.1:3333/product/${id}`, {
+    const response = await fetch(`http://144.22.184.79/product/${id}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -117,7 +117,7 @@ export default class Products {
   }
 
   static async deleteProduct(id?: string) {
-    const response = await fetch(`http://127.0.0.1:3333/product/${id}`, {
+    const response = await fetch(`http://144.22.184.79/product/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -130,7 +130,7 @@ export default class Products {
     { name, quantity, description, price, category }: ProductsProps
   ) {
     const response = await fetch(
-      `http://127.0.0.1:3333/user/${userId}/product/${ProductId}`,
+      `http://144.22.184.79/user/${userId}/product/${ProductId}`,
       {
         method: "PUT",
         headers: {
