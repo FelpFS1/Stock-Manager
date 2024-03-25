@@ -5,7 +5,7 @@ export default async function SingInForm({
   email: string;
   password: string;
 }) {
-  const response = await fetch("http://127.0.0.1:3333/login", {
+  const response = await fetch("http://144.22.184.79/login", {
     method: "POST",
     headers: {
       "Content-type": "application/json",

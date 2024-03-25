@@ -21,7 +21,7 @@ export default async function SingUpForm({
     }
     if (password != passwordAgain) return {message:"⚠️ Senhas não correspondem ⚠️"};
 
-  const response = await fetch("http://127.0.0.1:3333/register", {
+  const response = await fetch("hhttp://144.22.184.79/register", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
