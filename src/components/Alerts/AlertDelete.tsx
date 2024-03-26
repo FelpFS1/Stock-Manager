@@ -22,7 +22,7 @@ export default function AlertDelete({
       animate={{ opacity: [0, 1], translateX: [-1000, 0] }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
       className={
-        "absolute w-10/12 -left-2/4 -right-2/4 -2 py-10  bg-white text-center m-auto md:w-2/5 rounded-md"
+        "absolute w-10/12 -left-2/4 -right-2/4 py-10  bg-white text-center m-auto md:w-2/5 rounded-md"
       }
     >
       <div>

@@ -13,10 +13,11 @@ export default async function SingUpForm({
   password,
   passwordAgain,
 }: SingUpProps) {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&¨])[A-Za-z\d@$#!%*?&¨]+$/;
     const passPassword = passwordRegex.test(password)
-
-    if(!passPassword){  
+    const lengthPassword = password.length >= 8
+   
+    if(!passPassword && !lengthPassword){  
         return {message:"⚠️ A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial. ⚠️"}
     }
     if (password != passwordAgain) return {message:"⚠️ Senhas não correspondem ⚠️"};
@@ -32,6 +33,7 @@ export default async function SingUpForm({
       password: password,
     }),
   });
+ 
   return await response.json()
   
 }

@@ -37,7 +37,7 @@ export default function Register() {
         setErroMessage('')
         event.preventDefault()
         const response = await SingUpForm(user)
-        if (response.message) {
+        if (response.message) {   
             setErroMessage(response.message)
             return
         }
@@ -53,10 +53,12 @@ export default function Register() {
         if (user.password.length === 0) {
             return null
         }
+        console.log(user.password);
+        
         const verifyUppercase = /.*[A-Z].*/
         const verifyLowercase = /.*[a-z].*/
         const verifyNumber = /.*[0-9].*/
-        const verifyCharacter = /.*[!@#$%^&*()].*/
+        const verifyCharacter = /.*[[@$!%*?&¨].*/
         setRequirements(state => ({
             ...state,
             lengthRequirements: user.password.length >= 8 ? true : false,
