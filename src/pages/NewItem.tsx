@@ -55,7 +55,6 @@ export default function NewItem() {
 
     alert("Preencha todos os campos!");
   };
-  console.log(newProduct);
 
   return (
     <div className="flex justify-center mt-5">
