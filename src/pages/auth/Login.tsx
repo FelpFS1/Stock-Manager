@@ -86,7 +86,6 @@ export default function Login() {
             name="email"
             id="email"
             placeholder="Digite seu email"
-            autoComplete="true"
             required
           />
           <label htmlFor="password">Senha:</label>

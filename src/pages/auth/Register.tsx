@@ -101,7 +101,7 @@ export default function Register() {
                                 type="text"
                                 name="name" id="name"
                                 required placeholder="Digite seu nome *" />
-
+                                
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="lastName">Sobrenome:</label>
