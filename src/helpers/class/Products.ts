@@ -115,7 +115,7 @@ export default class Products {
   }
 
   static async deleteProduct(id?: string) {
-    const response = await fetch(`https://api-manager.shop/${id}`, {
+    const response = await fetch(`https://api-manager.shop/product/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
