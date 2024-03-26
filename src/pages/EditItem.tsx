@@ -65,7 +65,6 @@ export default function EditItem() {
     }
   }, [productsEdit, allProducts, id]);
 
-  console.log(updateProduct);
 
   return (
     <div className="mt-5 ">

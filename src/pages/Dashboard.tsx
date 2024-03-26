@@ -23,7 +23,6 @@ export default function Dashboard() {
 
     const checkToken = async() =>{
         const data = await Products.getAllProduct()
-        console.log(data);
         
         if(data.message){
            

@@ -66,8 +66,6 @@ export default class Products {
       (product) => product.id === id
     );
     if(productFiltered.length > 0){
-      console.log(productFiltered);
-      
       const product = 
         {
           id: productFiltered[0].id,
@@ -98,7 +96,7 @@ export default class Products {
   ) {
 
     
-    const response = await fetch(`http://144.22.184.79:3333/product/${id}`, {
+    const response = await fetch(`https://api-manager.shop/product/${id}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -117,7 +115,7 @@ export default class Products {
   }
 
   static async deleteProduct(id?: string) {
-    const response = await fetch(`http://144.22.184.79:3333/product/${id}`, {
+    const response = await fetch(`https://api-manager.shop/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -130,7 +128,7 @@ export default class Products {
     { name, quantity, description, price, category }: ProductsProps
   ) {
     const response = await fetch(
-      `http://144.22.184.79:3333/user/${userId}/product/${ProductId}`,
+      `https://api-manager.shop/user/${userId}/product/${ProductId}`,
       {
         method: "PUT",
         headers: {

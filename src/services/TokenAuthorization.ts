@@ -1,5 +1,5 @@
 export default async function TokenAuthorization(token:string){
-    const loggedUser = await fetch("http://144.22.184.79:3333/authorization", {
+    const loggedUser = await fetch("https://api-manager.shop/authorization", {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`

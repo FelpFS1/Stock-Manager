@@ -20,7 +20,6 @@ import Products from "../helpers/class/Products";
       const fetchData = async () => {
         if (localStorage.getItem('token')) {
           const data = await Products.getAllProduct();
-          console.log(data);
           
           if(data.message){
             localStorage.removeItem('token')
