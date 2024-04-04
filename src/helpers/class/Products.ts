@@ -24,26 +24,23 @@ export default class Products {
   }
 
   getDiversityProduct(): number {
-    const amountDiversity = this.products.reduce(
-      (accumulator: { [key: string]: ProductsProps[] }, current) => {
-        if (accumulator[current.category]) {
-          accumulator[current.category].push(current);
-        } else {
-          accumulator[current.category] = [current];
-        }
-        return accumulator;
-      },
-      {}
-    );
+   const totalInventary = this.products.reduce((acc,product) => acc + +product.quantity ,0)
 
-    return Object.keys(amountDiversity).length;
+   return totalInventary
   }
 
   getRecentProducts() {
     const recentProducts = this.products.filter((product) => {
+      const limitDate = new Date()
+
+      limitDate.setDate(limitDate.getDate() - 4)
+     
+      
       const date =
-        new Date().getDate() - new Date(product.createdAt).getDate() < 5;
+    new Date(product.createdAt) >= limitDate
       if (date) {
+        console.log(date);
+        
         return product;
       }
     });

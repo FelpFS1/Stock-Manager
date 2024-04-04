@@ -58,11 +58,11 @@ export default function Dashboard() {
                 <section className="text-white w-[90vw] grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
                     <CardDashboard
                         cardTitle="Diversidade de itens"
-                        contentCard={Number(!products[0]?.id ? 0 : new Products(products).getDiversityProduct())}
+                        contentCard={Number(!products[0]?.id ? 0 :allProducts.length)}
                     />
                     <CardDashboard
                         cardTitle="Inventário total"
-                        contentCard={Number(!products[0]?.id ? 0 : allProducts.length)}
+                        contentCard={Number(!products[0]?.id ? 0 : new Products(allProducts).getDiversityProduct())}
                     />
                     <CardDashboard
                         cardTitle="Itens recentes"
