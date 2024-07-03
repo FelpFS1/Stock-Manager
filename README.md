@@ -8,7 +8,6 @@ Este é um aplicativo de gerenciamento de estoque desenvolvido com React, Vite, 
 
 - **Interface Intuitiva:** Uma interface de usuário limpa e intuitiva, projetada para facilitar a navegação e a interação.
 - **Gerenciamento de Produtos:** Adicione, edite e remova produtos do seu estoque com facilidade.
-- **Pesquisa Avançada:** Capacidade de pesquisar produtos com filtros avançados para encontrar informações específicas rapidamente. <span>(Funcionalidade ainda será implementada)</span>
 - **Autenticação de Usuário:** Autenticação de usuários
 - **Armazenamento de Dados Seguro:** Utiliza MongoDB como banco de dados para armazenar os dados de forma segura e escalável, com Prisma para facilitar a interação com o banco de dados.
 
