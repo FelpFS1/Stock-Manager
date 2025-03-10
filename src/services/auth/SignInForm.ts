@@ -5,7 +5,7 @@ export default async function SingInForm({
   email: string;
   password: string;
 }) {
-  const response = await fetch("https://api-manager.shop/login", {
+  const response = await fetch("https://app-manager.shop/login", {
     method: "POST",
     headers: {
       "Content-type": "application/json",

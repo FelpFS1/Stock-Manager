@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+
 import RootLayout from "../components/RootLayout";
 import Dashboard from "../pages/Dashboard";
 import StockItems from "../pages/StockItems";
@@ -11,6 +11,7 @@ import Register from "../pages/auth/Register";
 import LoadProduct from "../loaders/products";
 import ProductBoundary from "../ErroBoundary/ProductBoundary";
 import PagesBoundary from "../ErroBoundary/PagesBoundary";
+import { createBrowserRouter } from "react-router-dom";
 
 
 const router = createBrowserRouter([{

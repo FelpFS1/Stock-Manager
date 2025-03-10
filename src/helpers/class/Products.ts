@@ -86,7 +86,7 @@ export default class Products {
     id: string,
     { name, quantity, description, price, category }: newProduct
   ) {
-    const response = await fetch(`https://api-manager.shop/product/${id}`, {
+    const response = await fetch(`https://app-manager.shop/product/${id}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -105,7 +105,7 @@ export default class Products {
   }
 
   static async deleteProduct(id?: string) {
-    const response = await fetch(`https://api-manager.shop/product/${id}`, {
+    const response = await fetch(`https://app-manager.shop/product/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -118,7 +118,7 @@ export default class Products {
     { name, quantity, description, price, category }: ProductsProps
   ) {
     const response = await fetch(
-      `https://api-manager.shop/user/${userId}/product/${ProductId}`,
+      `https://app-manager.shop/user/${userId}/product/${ProductId}`,
       {
         method: "PUT",
         headers: {
